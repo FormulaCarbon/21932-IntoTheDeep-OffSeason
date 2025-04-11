@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class SimpleMotorController {
+
     private int targetPosition;
     private DcMotorEx motor;
 
@@ -37,5 +38,9 @@ public class SimpleMotorController {
 
     public int getCurrentPosition() {
         return motor.getCurrentPosition();
+    }
+
+    public void setPower(double power) {
+        motor.setPower(power);
     }
 }
