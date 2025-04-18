@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class DualMotorPivot {
+//test
 
     public SimpleMotorController leftMotor, rightMotor;
 
