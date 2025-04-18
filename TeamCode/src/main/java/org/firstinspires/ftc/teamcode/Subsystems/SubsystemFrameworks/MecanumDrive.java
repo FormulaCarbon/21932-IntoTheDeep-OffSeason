@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.Subsystems.SubsystemFrameworks;
 
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 public class MecanumDrive {
 
     private DcMotorEx frontLeft, backLeft, frontRight, backRight;
