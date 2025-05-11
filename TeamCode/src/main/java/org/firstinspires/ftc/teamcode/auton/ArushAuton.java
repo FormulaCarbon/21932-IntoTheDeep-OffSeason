@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.robotcore.external.navigation.Rotation;
 
 //@Config
-@Autonomous(name = "Arush Sample", group = "Sensor")
+@Autonomous(name = "Arush Sample 4", group = "Sensor")
 public class ArushAuton extends LinearOpMode {
 
     public static double inx = 0;
