@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package subsystems;
 
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchSimple;
 
-public class ColorRangefinder {
+class ColorRangefinder {
     public final RevColorSensorV3 emulator;
     private final I2cDeviceSynchSimple i2c;
 

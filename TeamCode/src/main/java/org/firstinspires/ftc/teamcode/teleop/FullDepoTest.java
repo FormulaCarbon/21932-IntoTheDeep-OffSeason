@@ -7,9 +7,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.teamcode.subsystems.Util;
-import org.firstinspires.ftc.teamcode.subsystems.Wrist;
+import subsystems.Claw;
+import subsystems.Extension;
+import subsystems.Pivot;
+import subsystems.Util;
+import subsystems.Wrist;
 
 @TeleOp
 @Config

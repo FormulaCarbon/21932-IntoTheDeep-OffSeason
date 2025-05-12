@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.subsystems.ActiveIntake;
-import org.firstinspires.ftc.teamcode.subsystems.Util;
+import subsystems.ActiveIntake;
+import subsystems.Util;
 
 @TeleOp
 @Config

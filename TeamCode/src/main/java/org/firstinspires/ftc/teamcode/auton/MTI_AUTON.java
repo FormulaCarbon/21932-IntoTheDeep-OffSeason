@@ -14,10 +14,10 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
-import org.firstinspires.ftc.teamcode.subsystems.Pivot;
-import org.firstinspires.ftc.teamcode.subsystems.SpecMec;
-import org.firstinspires.ftc.teamcode.subsystems.Util;
-import org.firstinspires.ftc.teamcode.subsystems.Wrist;
+import subsystems.Pivot;
+import subsystems.SpecMec;
+import subsystems.Util;
+import subsystems.Wrist;
 
 @Config
 @Autonomous

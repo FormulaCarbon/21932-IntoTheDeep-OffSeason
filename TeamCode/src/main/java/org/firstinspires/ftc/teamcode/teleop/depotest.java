@@ -5,9 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.subsystems.Claw;
-import org.firstinspires.ftc.teamcode.subsystems.Util;
-import org.firstinspires.ftc.teamcode.subsystems.Wrist;
+import subsystems.Claw;
+import subsystems.Extension;
+import subsystems.Pivot;
+import subsystems.Util;
+import subsystems.Wrist;
 
 @TeleOp
 @Config
