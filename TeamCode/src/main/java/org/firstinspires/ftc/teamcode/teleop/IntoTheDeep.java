@@ -8,13 +8,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-import subsystems.Claw;
-import subsystems.Extension;
-import subsystems.Pivot;
-import subsystems.Util;
-import subsystems.Wrist;
-import subsystems.Drive;
-import subsystems.SpecMec;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
+import org.firstinspires.ftc.teamcode.subsystems.Extension;
+import org.firstinspires.ftc.teamcode.subsystems.Pivot;
+import org.firstinspires.ftc.teamcode.subsystems.Util;
+import org.firstinspires.ftc.teamcode.subsystems.Wrist;
+import org.firstinspires.ftc.teamcode.subsystems.Drive;
+import org.firstinspires.ftc.teamcode.subsystems.SpecMec;
 
 @TeleOp
 @Config
@@ -92,14 +92,17 @@ public class IntoTheDeep extends LinearOpMode {
             }
 
             if (gamepad2.right_bumper) {
-                sequence = "Specimen";
-                incr = 0;
+                specMec.setPosition("Score", "Score");
+            }
+            if (gamepad2.right_trigger > 0.5) {
+                specMec.setPosition("Idle", "Score");
+            }
+
+            if (gamepad2.left_trigger > 0.5) {
+                specMec.setPosition("Intake", "Intake");
             }
             if (gamepad2.left_bumper) {
-                //specMec.setPosition("Start", "Intake");
-                specMec.idleClaw();
-                sequence = "Sample";
-                incr = 0;
+                specMec.clawToggle();
             }
             if (gamepad2.a) {
                 //specMec.setPosition("Start", "Intake");
@@ -108,6 +111,12 @@ public class IntoTheDeep extends LinearOpMode {
                 incr = 0;
             }
             if (gamepad2.b) {
+                //specMec.setPosition("Start", "Intake");
+                specMec.idleClaw();
+                sequence = "Sample";
+                incr = 0;
+            }
+            if (gamepad2.y) {
                 incr = -5;
             }
 
@@ -151,7 +160,7 @@ public class IntoTheDeep extends LinearOpMode {
                 drive.slowModeOn();
             }
 
-            if ((gamepad1.left_trigger < 0.1) && !gamepad2.y) {
+            if ((gamepad1.left_trigger < 0.1)) {
                 drive.slowModeOf();
             }
 
@@ -344,31 +353,6 @@ public class IntoTheDeep extends LinearOpMode {
                     pivot.setDirectPos(pivot.getTarget() - pchange2);
                     break;
 
-            }
-        }
-        else if (sequence.equals("Specimen")) {
-            switch (pos) {
-                case 0:
-                    specMec.setPosition("Intake", "Intake");
-                    specMec.openClaw();
-                    break;
-                case 1:
-                    specMec.setPosition("Intake", "Intake");
-                    //specMec.checkSensor();
-                    specMec.closeClaw();
-                    break;
-                case 2:
-                    specMec.setPosition("Idle", "Score");
-                    specMec.closeClaw();
-                    break;
-                case 3:
-                    specMec.setPosition("Score", "Score");
-                    specMec.closeClaw();
-                    break;
-                case 4:
-                    specMec.setPosition("Score", "Score");
-                    specMec.openClaw();
-                    break;
             }
         }
         else if (sequence.equals("Intake")) {

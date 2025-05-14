@@ -7,13 +7,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import subsystems.ActiveIntake;
-import subsystems.Extension;
-import subsystems.Pivot;
-import subsystems.Util;
-import subsystems.Wrist;
-import subsystems.Drive;
-import subsystems.SpecMec;
+import org.firstinspires.ftc.teamcode.subsystems.ActiveIntake;
+import org.firstinspires.ftc.teamcode.subsystems.Extension;
+import org.firstinspires.ftc.teamcode.subsystems.Pivot;
+import org.firstinspires.ftc.teamcode.subsystems.Util;
+import org.firstinspires.ftc.teamcode.subsystems.Wrist;
+import org.firstinspires.ftc.teamcode.subsystems.Drive;
+import org.firstinspires.ftc.teamcode.subsystems.SpecMec;
 
 @TeleOp
 @Config

@@ -1,4 +1,4 @@
-package subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
@@ -70,6 +70,10 @@ public class SpecMec {
 
     public void openClaw() {
         clawPos = open;
+    }
+
+    public void clawToggle() {
+        clawPos = clawPos == open ? close : open;
     }
 
     public void idleClaw() {
