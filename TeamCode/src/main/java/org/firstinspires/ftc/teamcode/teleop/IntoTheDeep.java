@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Extension;
+import org.firstinspires.ftc.teamcode.subsystems.PTO;
 import org.firstinspires.ftc.teamcode.subsystems.Pivot;
 import org.firstinspires.ftc.teamcode.subsystems.Util;
 import org.firstinspires.ftc.teamcode.subsystems.Wrist;
@@ -25,7 +26,7 @@ public class IntoTheDeep extends LinearOpMode {
     private int incr = 1;
     boolean incrUpdate = false;
 
-    public static int maxSampleSteps = 8, maxSpecimenSteps = 4, maxIntakeSteps = 3, extensionSafety = 1900;
+    public static int maxSampleSteps = 8, maxSpecimenSteps = 4, maxIntakeSteps = 3, maxHangSteps = 3, extensionSafety = 1900;
 
     boolean pivotReady, wristReady, extensionReady, swapReady, cycleReady, clawReady, turnReady;
     boolean wristManual = false, extensionManual = false, pivotManual = false;
@@ -47,6 +48,7 @@ public class IntoTheDeep extends LinearOpMode {
         specMec.setPosition("Intake", "Intake");
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        PTO pto = new PTO(hardwareMap, util.deviceConf);
         waitForStart();
 
         wrist.setRotationPos(0);
@@ -59,7 +61,7 @@ public class IntoTheDeep extends LinearOpMode {
             drive.getXYZ(gamepad1.left_stick_x, gamepad1.left_stick_y, -gamepad1.right_stick_x);
 
             increment(gamepad1.right_bumper, gamepad1.left_bumper, sequence);
-            setPositions(incr, sequence, pivot, extension, wrist, specMec, pivotManual, extensionManual);
+            setPositions(incr, sequence, pivot, extension, wrist, specMec, pto, pivotManual, extensionManual);
 
             /*if (gamepad1.x && wristReady) {
                 wristManual = true;
@@ -114,6 +116,12 @@ public class IntoTheDeep extends LinearOpMode {
                 //specMec.setPosition("Start", "Intake");
                 specMec.idleClaw();
                 sequence = "Sample";
+                incr = 0;
+            }
+            if (gamepad2.x)
+            {
+                specMec.idleClaw();
+                sequence = "Hang";
                 incr = 0;
             }
             if (gamepad2.y) {
@@ -190,6 +198,7 @@ public class IntoTheDeep extends LinearOpMode {
             claw.update(gamepad1.a);
             specMec.update();
             specMec.updateClaw();
+            pto.update();
 
 
             telemetry.addData("incr", incr);
@@ -254,9 +263,25 @@ public class IntoTheDeep extends LinearOpMode {
                 incr = 0;
             }
         }
+
+        else if (sequence.equals("Hang")) {
+            if (downFlag && !incrUpdate && incr > 0) {
+                incr -= 1;
+                incrUpdate = true;
+            } else if (upFlag && !incrUpdate) {
+                incr += 1;
+                incrUpdate = true;
+            } else if (!upFlag && !downFlag) {
+                incrUpdate = false;
+            }
+
+            if (incr > maxHangSteps) {
+                incr = 0;
+            }
+        }
     }
 
-    public void setPositions(int pos, String sequence, Pivot pivot, Extension extension, Wrist wrist, SpecMec specMec, boolean pMan, boolean eMan)  {
+    public void setPositions(int pos, String sequence, Pivot pivot, Extension extension, Wrist wrist, SpecMec specMec, PTO pto, boolean pMan, boolean eMan)  {
         if (sequence.equals("Sample")) {
             switch (pos) {
                 case 0: // Idle
@@ -398,6 +423,47 @@ public class IntoTheDeep extends LinearOpMode {
                     break;*/
             }
         }
+        else if (sequence.equals("Hang")) {
+            switch(pos) {
+                case 0: // Pivot Up
+                    pivot.setPos("Idle");
+                    extension.setPos("Idle");
+                    wrist.setBicepPos("Idle");
+                    wrist.setForearmPos("Idle");
+                    break;
+                case 1: // Hang Extend
+                    pivot.setPos("Idle");
+                    pivot.setkP("Extended");
+                    extension.setPos("Hang");
+                    wrist.setBicepPos("Idle");
+                    wrist.setForearmPos("Idle");
+                    break;
+                case 2: // Engage PTO
+                    pivot.setPos("Idle");
+                    pivot.setkP("Extended");
+                    extension.setPos("Hang");
+                    wrist.setBicepPos("Idle");
+                    wrist.setForearmPos("Idle");
+                    pto.activate();
+                    break;
+                case 3: // Hang Retract
+                    pivot.setPos("Idle");
+                    pivot.setkP("Extended");
+                    extension.setPos("Retract");
+                    wrist.setBicepPos("Idle");
+                    wrist.setForearmPos("Idle");
+                    pto.activate();
 
+                    break;
+                /*case 4: // Pullout
+                    pivot.setPos("Down");
+                    pivot.setkP("Normal");
+                    extension.setPos("Idle");
+                    wrist.setBicepPos("Basket");
+                    wrist.setForearmPos("Basket");
+                    wrist.setRotationPos(0);
+                    break;*/
+            }
+        }
     }
 }

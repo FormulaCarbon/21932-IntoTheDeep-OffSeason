@@ -41,6 +41,7 @@ public class Util {
         deviceConf.put("colorSensor", "sensor");
         deviceConf.put("spinner", "spinner");
         deviceConf.put("clamp", "clamp");
+        deviceConf.put("pto", "pto");
     }
 
     public double calculateTangentHeading(Pose startPose, Pose endPose) {
