@@ -61,7 +61,7 @@ public class IntoTheDeep extends LinearOpMode {
             drive.getXYZ(gamepad1.left_stick_x, gamepad1.left_stick_y, -gamepad1.right_stick_x);
 
             increment(gamepad1.right_bumper, gamepad1.left_bumper, sequence);
-            setPositions(incr, sequence, pivot, extension, wrist, specMec, pto, pivotManual, extensionManual);
+            setPositions(incr, sequence, drive, pivot, extension, wrist, specMec, pto, pivotManual, extensionManual);
 
             /*if (gamepad1.x && wristReady) {
                 wristManual = true;
@@ -281,7 +281,7 @@ public class IntoTheDeep extends LinearOpMode {
         }
     }
 
-    public void setPositions(int pos, String sequence, Pivot pivot, Extension extension, Wrist wrist, SpecMec specMec, PTO pto, boolean pMan, boolean eMan)  {
+    public void setPositions(int pos, String sequence, Drive drive, Pivot pivot, Extension extension, Wrist wrist, SpecMec specMec, PTO pto, boolean pMan, boolean eMan)  {
         if (sequence.equals("Sample")) {
             switch (pos) {
                 case 0: // Idle
@@ -447,6 +447,7 @@ public class IntoTheDeep extends LinearOpMode {
                     pto.activate();
                     break;
                 case 3: // Hang Retract
+                    drive.hangWheelOn();
                     pivot.setPos("Idle");
                     pivot.setkP("Extended");
                     extension.setPos("Retract");

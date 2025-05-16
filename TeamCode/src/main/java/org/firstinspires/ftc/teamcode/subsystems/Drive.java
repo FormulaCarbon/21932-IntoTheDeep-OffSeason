@@ -17,6 +17,8 @@ public class Drive {
     public static double curveFactor = 1.5, maxLinear = 1, maxRot = 0.5, slowLin = 0.3, slowRot = 0.25, fastLin = 1, fastRot = 0.5;
 
     public static double flMult = 1, blMult = 1, frMult = 1, brMult = 1;
+
+    private boolean hangWheel = false;
     public Drive(HardwareMap hwMap, HashMap<String, String> config) {
         frontLeft = hwMap.dcMotor.get(config.get("frontLeft"));
         backLeft = hwMap.dcMotor.get(config.get("backLeft"));
@@ -42,7 +44,12 @@ public class Drive {
         d = Math.max((Math.abs(y) + Math.abs(x) + Math.abs(rx)) * Math.max(Math.max(flMult, blMult), Math.max(frMult, brMult)), 1);
         frontLeft.setPower( ((y + x + rx) * flMult) / d );
         backLeft.setPower( ((y - x + rx) * blMult) / d );
-        frontRight.setPower( ((y - x - rx) * frMult) / d );
+        if (hangWheel) {
+            frontRight.setPower(-1);
+        }
+        else {
+            frontRight.setPower(((y - x - rx) * frMult) / d);
+        }
         backRight.setPower( ((y + x - rx) * brMult) / d );
     }
 
@@ -54,5 +61,13 @@ public class Drive {
     public void slowModeOf() {
         maxLinear = fastLin;
         maxRot = fastRot;
+    }
+
+    public void hangWheelOn() {
+        hangWheel = true;
+    }
+
+    public void hangWheelOff() {
+        hangWheel = false;
     }
 }
