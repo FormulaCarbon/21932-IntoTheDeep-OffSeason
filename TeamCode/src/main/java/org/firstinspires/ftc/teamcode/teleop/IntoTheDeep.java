@@ -31,6 +31,8 @@ public class IntoTheDeep extends LinearOpMode {
     boolean pivotReady, wristReady, extensionReady, swapReady, cycleReady, clawReady, turnReady;
     boolean wristManual = false, extensionManual = false, pivotManual = false;
 
+    boolean toggled = false;
+
     String sequence = "Sample";
 
     public static int pchange = 400;
@@ -59,7 +61,7 @@ public class IntoTheDeep extends LinearOpMode {
         while (opModeIsActive()) {
             turnReady = pivotReady = wristReady = extensionReady = swapReady = cycleReady = clawReady = true;
             drive.getXYZ(gamepad1.left_stick_x, gamepad1.left_stick_y, -gamepad1.right_stick_x);
-
+            toggled = false;
             increment(gamepad1.right_bumper, gamepad1.left_bumper, sequence);
             setPositions(incr, sequence, drive, pivot, extension, wrist, specMec, pto, pivotManual, extensionManual);
 
@@ -104,7 +106,11 @@ public class IntoTheDeep extends LinearOpMode {
                 specMec.setPosition("Intake", "Intake");
             }
             if (gamepad2.left_bumper) {
-                specMec.clawToggle();
+                if (!toggled) {
+                    specMec.clawToggle();
+                    toggled = true;
+                }
+
             }
             if (gamepad2.a) {
                 //specMec.setPosition("Start", "Intake");
@@ -201,6 +207,7 @@ public class IntoTheDeep extends LinearOpMode {
             pto.update();
 
 
+
             telemetry.addData("incr", incr);
             telemetry.addData("seq", sequence);
             telemetry.addData("tar", pivot.getTarget());
@@ -212,7 +219,7 @@ public class IntoTheDeep extends LinearOpMode {
             telemetry.addData("error", extension.getError());
             telemetry.addData("red", specMec.getColors().red);
             telemetry.addData("blue", specMec.getColors().blue);
-
+            telemetry.addData("clawpos", specMec.getClawPos());
             telemetry.update();
         }
     }

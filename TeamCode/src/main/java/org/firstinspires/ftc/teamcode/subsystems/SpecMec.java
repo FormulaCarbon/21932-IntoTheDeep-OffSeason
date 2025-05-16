@@ -98,4 +98,7 @@ public class SpecMec {
     public double getTarget() {
         return swPos;
     }
+    public double getClawPos() {
+        return clawPos;
+    }
 }
