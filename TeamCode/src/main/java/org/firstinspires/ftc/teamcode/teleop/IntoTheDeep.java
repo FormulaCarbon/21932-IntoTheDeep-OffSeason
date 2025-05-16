@@ -26,7 +26,7 @@ public class IntoTheDeep extends LinearOpMode {
     private int incr = 1;
     boolean incrUpdate = false;
 
-    public static int maxSampleSteps = 8, maxSpecimenSteps = 4, maxIntakeSteps = 3, maxHangSteps = 3, extensionSafety = 1900;
+    public static int maxSampleSteps = 8, maxSpecimenSteps = 4, maxIntakeSteps = 5, maxHangSteps = 3, extensionSafety = 1900;
 
     boolean pivotReady, wristReady, extensionReady, swapReady, cycleReady, clawReady, turnReady;
     boolean wristManual = false, extensionManual = false, pivotManual = false;
@@ -413,14 +413,23 @@ public class IntoTheDeep extends LinearOpMode {
                     wrist.setBicepPos("Idle");
                     wrist.setForearmPos("Idle");
                     break;
-                /*case 4: // Pullout
+                case 4: // Pullout
+                    //if (extension.getCurrentPos() < 100) {
                     pivot.setPos("Down");
+                    pivot.setkP("Normal");
+                    //}
+                    extension.setPos("Idle");
+                    wrist.setBicepPos("Idle");
+                    wrist.setForearmPos("Idle");
+
+                    break;
+                case 5: // Pivot Up to drop off sample
+                    pivot.setPos("Hang");
                     pivot.setkP("Normal");
                     extension.setPos("Idle");
                     wrist.setBicepPos("Basket");
                     wrist.setForearmPos("Basket");
-                    wrist.setRotationPos(0);
-                    break;*/
+                    break;
             }
         }
         else if (sequence.equals("Hang")) {
