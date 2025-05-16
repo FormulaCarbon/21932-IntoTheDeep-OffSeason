@@ -348,7 +348,7 @@ public class IntoTheDeep extends LinearOpMode {
                         extension.setPos("Basket");
                     }
                     wrist.setBicepPos("Basket");
-                    wrist.setForearmPos("Basket");
+                    wrist.setForearmPos("Drop");
                     break;
                 case 8: // Flip Out
                     pivot.setPos("Basket");
