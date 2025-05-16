@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class PTO {
     private Servo pto;
 
-    private static double on = 0, off = 0.1;
+    private static double on = 0.59, off = 0.78;
 
     private double targetPos = off;
     public PTO(HardwareMap hardwareMap, HashMap<String, String> deviceConf) {
