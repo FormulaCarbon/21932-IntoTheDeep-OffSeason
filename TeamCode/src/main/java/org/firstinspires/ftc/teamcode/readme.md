@@ -1,4 +1,3 @@
-forwardRampLogger
 lateral ramp logger
 angular ramp logger
 localization test

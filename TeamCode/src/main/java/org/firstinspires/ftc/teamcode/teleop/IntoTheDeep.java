@@ -105,7 +105,13 @@ public class IntoTheDeep extends LinearOpMode {
             if (gamepad2.left_trigger > 0.5) {
                 specMec.setPosition("Intake", "Intake");
             }
-            specMec.clawToggle(gamepad2.left_bumper);
+            if (gamepad2.left_bumper) {
+                if (!toggled) {
+                    specMec.clawToggle();
+                    toggled = true;
+                }
+
+            }
             if (gamepad2.a) {
                 //specMec.setPosition("Start", "Intake");
                 specMec.idleClaw();
