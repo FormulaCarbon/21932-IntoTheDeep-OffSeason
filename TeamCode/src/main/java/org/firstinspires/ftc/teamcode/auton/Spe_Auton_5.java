@@ -32,9 +32,9 @@ public class Spe_Auton_5 extends OpMode {
     public static double waitTime = 0.5;
     private Wrist wrist;
 
-    public static double hang0X = 36.25, hangX = 39,pickX = 13.5, pickY = 31, hangY = 74, blockX = 30, block3X = 18, block3Y = 7, blockY = 23, block2Y = 15, pushControlX = 63, parkX = 30, parkY = 25, pickX4 = 13.5, pickX3 = 14.5, hang3XChange = -8, hang4XChange = -10;
+    public static double hang0X = 36.25, hangX = 39,pickX = 13.5, pickY = 31, hangY = 74, blockX = 30, block3X = 18, block3Y = 10, blockY = 23, block2Y = 15, pushControlX = 63, parkX = 30, parkY = 25, pickX4 = 13.5, pickX3 = 14.5, hang3XChange = -8, hang4XChange = -10, pickY1 = 31;
 
-    public static int pivotDownTime = 0, idleTime0 = 0, scoreTime0 = 1200, openTime0 = 1400 , closeTime1 = 500;
+    public static int pivotDownTime = 0, idleTime0 = 0, scoreTime0 = 1100, openTime0 = 1800 , closeTime1 = 500;
 
     public static double pullOutPar = 0.1, idlePar = 0, scorePar = 0.93, openPar = 0.97, closePar = 0.9, specMecDownPar = 0, specMecParkPar = 0, scorePar4 = 0.95, openPar4 = 0.99, scorePar3 = 0.95, openPar3 = 0.99;
 
@@ -63,6 +63,7 @@ public class Spe_Auton_5 extends OpMode {
     private final Pose push3Pose = new Pose(block3X, block3Y, Math.toRadians(0));
 
     private final Pose pickupPose = new Pose(pickX, pickY, Math.toRadians(0));
+    private final Pose pickupPose1 = new Pose(pickX, pickY1, Math.toRadians(0));
 
     private final Pose pickupPose3 = new Pose(pickX3, pickY, Math.toRadians(0));
     private final Pose pickupPose4 = new Pose(pickX4, pickY, Math.toRadians(0));
@@ -139,8 +140,8 @@ public class Spe_Auton_5 extends OpMode {
                 .addPath(
                         new BezierCurve(
                                 new Point(push3Pose),
-                                new Point(27.66982408660352, 34.48985115020297, Point.CARTESIAN),
-                                new Point(pickupPose)
+                                new Point(27.66982408660352, 32, Point.CARTESIAN),
+                                new Point(pickupPose1)
                         )
                 )
                 .setConstantHeadingInterpolation(Math.toRadians(0))
@@ -362,10 +363,10 @@ public class Spe_Auton_5 extends OpMode {
     @Override
     public void loop() {
         follower.update();
-        /*pivot.update();
+        pivot.update();
         specMec.update();
         specMec.updateClaw();
-        wrist.update();*/
+        wrist.update();
         autonomousPathUpdate();
         telemetry.addData("Path State", pathState);
         telemetry.addData("Position", follower.getPose().toString());
@@ -390,10 +391,10 @@ public class Spe_Auton_5 extends OpMode {
 
     @Override
     public void init_loop() {
-        /*wrist.update();
+        wrist.update();
         pivot.update();
         specMec.update();
-        specMec.updateClaw();*/
+        specMec.updateClaw();
     }
     
 

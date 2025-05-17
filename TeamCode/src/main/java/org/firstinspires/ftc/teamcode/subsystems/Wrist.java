@@ -30,7 +30,7 @@ public class Wrist {
         bicepPositions.put("Ready",       0.81);
         bicepPositions.put("Idle",        0.805);
         bicepPositions.put("Start",       bStart);
-        //bicepPositions.put("Auton Idle",  bIdle);
+        bicepPositions.put("Auton Idle",  0.805);
 
         forearmPositions.put("Intake",      fIntake);
         forearmPositions.put("Basket",      fBasket);
@@ -38,7 +38,7 @@ public class Wrist {
         forearmPositions.put("Idle",        fIdle);
         forearmPositions.put("Start",       fStart);
         forearmPositions.put("Drop",        fDrop);
-        //forearmPositions.put("Auton Idle",  fIdle);
+        forearmPositions.put("Auton Idle",  fIdle);
 
         rotationPositions[0] = 0.21;
         rotationPositions[1] = 0.35;

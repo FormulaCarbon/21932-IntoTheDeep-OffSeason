@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,8 +14,9 @@ public class SpecMec {
 
     private Servo swing1, swing2, turn, claw;
 
-    public static double scorePos = 0.145, intakePos = 0.78, turn0 = 0.89, turn1 = 0.227, idlePos = 0.21, close = 0.49, open = 0.1, idle = 0.7;
+    public static double scorePos = 0, intakePos = 0.85, turn0 = 0.89, turn1 = 0.227, idlePos = 0.21, close = 0.49, open = 0.1, idle = 0.49;
     public static int ledBrightness = 100;
+
 
     public static HashMap<String, Double> swingPos = new HashMap<String, Double>();
     public static HashMap<String, Double> turnPos = new HashMap<String, Double>();

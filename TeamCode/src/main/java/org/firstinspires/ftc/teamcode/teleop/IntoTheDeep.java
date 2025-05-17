@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -25,6 +26,7 @@ public class IntoTheDeep extends LinearOpMode {
 
     private int incr = 1;
     boolean incrUpdate = false;
+    public static Gamepad previousGamepad2 = new Gamepad(), currentGamepad2 = new Gamepad();
 
     public static int maxSampleSteps = 8, maxSpecimenSteps = 4, maxIntakeSteps = 5, maxHangSteps = 3, extensionSafety = 1900;
 
@@ -64,6 +66,9 @@ public class IntoTheDeep extends LinearOpMode {
             toggled = false;
             increment(gamepad1.right_bumper, gamepad1.left_bumper, sequence);
             setPositions(incr, sequence, drive, pivot, extension, wrist, specMec, pto, pivotManual, extensionManual);
+
+            previousGamepad2.copy(currentGamepad2);
+            currentGamepad2.copy(gamepad2);
 
             /*if (gamepad1.x && wristReady) {
                 wristManual = true;
@@ -105,12 +110,8 @@ public class IntoTheDeep extends LinearOpMode {
             if (gamepad2.left_trigger > 0.5) {
                 specMec.setPosition("Intake", "Intake");
             }
-            if (gamepad2.left_bumper) {
-                if (!toggled) {
-                    specMec.clawToggle();
-                    toggled = true;
-                }
-
+            if (currentGamepad2.left_bumper && !previousGamepad2.left_bumper) {
+                specMec.clawToggle();
             }
             if (gamepad2.a) {
                 //specMec.setPosition("Start", "Intake");
@@ -220,7 +221,12 @@ public class IntoTheDeep extends LinearOpMode {
             telemetry.addData("red", specMec.getColors().red);
             telemetry.addData("blue", specMec.getColors().blue);
             telemetry.addData("clawpos", specMec.getClawPos());
+            telemetry.addData("prev", previousGamepad2.left_bumper);
+            telemetry.addData("cur", currentGamepad2.left_bumper);
+            telemetry.addData("ri", currentGamepad2.left_bumper && !previousGamepad2.left_bumper);
             telemetry.update();
+
+            toggled = gamepad2.left_bumper;
         }
     }
 
