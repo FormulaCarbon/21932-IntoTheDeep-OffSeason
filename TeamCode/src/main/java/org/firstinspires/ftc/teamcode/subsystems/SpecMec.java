@@ -21,6 +21,7 @@ public class SpecMec {
 
     public static double redThresh = 0.008, blueThresh = 0.008;
     ColorRangefinder sensor;
+    private boolean ispressed = false;
     NormalizedRGBA colors;
 
 
@@ -72,8 +73,16 @@ public class SpecMec {
         clawPos = open;
     }
 
-    public void clawToggle() {
-        clawPos = clawPos == open ? close : open;
+    public void clawToggle(boolean gp) {
+        if (gp && !ispressed) {
+            if (claw.getPosition() == close) {
+                clawPos = open;
+            }
+            else {
+                clawPos = close;
+            }
+        }
+        ispressed = gp;
     }
 
     public void idleClaw() {
