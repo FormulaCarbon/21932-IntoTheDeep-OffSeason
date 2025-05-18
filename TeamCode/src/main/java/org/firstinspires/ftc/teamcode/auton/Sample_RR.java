@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-import org.firstinspires.ftc.teamcode.roadrunner.MecanumDrive;
+import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.PinpointDrive;
 import org.firstinspires.ftc.teamcode.subsystems.AutonPivot;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Extension;
@@ -40,7 +41,7 @@ public class Sample_RR extends LinearOpMode {
         Wrist wrist = new Wrist(hardwareMap, util.deviceConf);
 
         Pose2d startPos = new Pose2d(40.5, 66, Math.PI);
-        MecanumDrive drive = new MecanumDrive(hardwareMap, startPos);
+        PinpointDrive drive = new PinpointDrive(hardwareMap, startPos);
 
         TrajectoryActionBuilder bucket0 = drive.actionBuilder(startPos)
                 .setTangent(3*Math.PI/2)
@@ -82,13 +83,13 @@ public class Sample_RR extends LinearOpMode {
 
 
         // go to start pos
-        //claw.directSet(Claw.closed);
+        claw.directSet(Claw.closed);
         wrist.setBicepPos("Start");
         wrist.setForearmPos("Start");
         wrist.setRotationPos(0);
         pivot.setPos("Start");
         pivot.setkP("Normal");
-        update.start();
+        //update.start();
 
         telemetry.addData("pos", pivot.getCurrent());
         telemetry.addData("target", pivot.getTarget());
@@ -124,7 +125,7 @@ public class Sample_RR extends LinearOpMode {
 
         wrist.setPos("Intake");
         sleep(1500);
-        //claw.directSet(Claw.closed);
+        claw.directSet(Claw.closed);
         sleep(500);
 
         pivot.setPos("Basket");
@@ -141,7 +142,7 @@ public class Sample_RR extends LinearOpMode {
         Actions.runBlocking(bucket3.build());
         wrist.setPos("Basket");
         sleep(500);
-        //claw.directSet(Claw.open);
+        claw.directSet(Claw.open);
         sleep(500);
         wrist.setPos("Auton Idle");
         sleep(500);
@@ -169,10 +170,10 @@ public class Sample_RR extends LinearOpMode {
         {
 
 
-            //pivot.update();
+            pivot.update();
 
-            //extension.update();
-            //wrist.update();
+            extension.update();
+            wrist.update();
 
             telemetry.addData("pos", pivot.getCurrent());
             telemetry.addData("target", pivot.getTarget());
@@ -193,7 +194,7 @@ public class Sample_RR extends LinearOpMode {
         Actions.runBlocking(trajectory);
         wrist.setPos("Basket");
         sleep(500);
-        ////claw.directSet(Claw.open);
+        claw.directSet(Claw.open);
         sleep(500);
         wrist.setPos("Auton Idle");
         sleep(500);
@@ -210,7 +211,7 @@ public class Sample_RR extends LinearOpMode {
 
         wrist.setPos("Intake");
         sleep(1500);
-        ////claw.directSet(Claw.closed);
+        claw.directSet(Claw.closed);
         sleep(500);
        // wrist.setPos("Auton Idle");
         //pivot.setPos("Basket");
