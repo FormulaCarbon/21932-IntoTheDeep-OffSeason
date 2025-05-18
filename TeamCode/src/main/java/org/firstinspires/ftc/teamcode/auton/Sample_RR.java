@@ -24,7 +24,7 @@ import java.util.HashMap;
 @Autonomous(name = "Sample Cycle (4)", group = "Sensor")
 public class Sample_RR extends LinearOpMode {
 
-    public static int tickChange = 100, pos = 150;
+    public static int tickChange = 100, posa = 150;
     public static double basketX = 58, basketY = 58, intakeY= 41, intake3X = 64.5, intake3Y = 40, basket0X = 58, basket0Y = 58, intakeX = 53, intake2X= 62, intake2Y = 42;
 
     @Override

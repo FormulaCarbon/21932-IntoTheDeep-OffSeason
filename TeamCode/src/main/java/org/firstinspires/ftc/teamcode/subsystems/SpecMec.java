@@ -104,4 +104,8 @@ public class SpecMec {
     public double getClawPos() {
         return clawPos;
     }
+
+    public void off() {
+        swPos = swing1.getPosition();
+    }
 }
