@@ -14,14 +14,14 @@ public class SpecMec {
 
     private Servo swing1, swing2, turn, claw;
 
-    public static double scorePos = 0, intakePos = 0.85, turn0 = 0.89, turn1 = 0.227, idlePos = 0.21, close = 0.49, open = 0.1, idle = 0.49;
+    public static double scorePos = 0, intakePos = 0.83, turn0 = 0.89, turn1 = 0.227, idlePos = 0.17, close = 0.49, open = 0.1, idle = 0.49;
     public static int ledBrightness = 100;
 
 
     public static HashMap<String, Double> swingPos = new HashMap<String, Double>();
     public static HashMap<String, Double> turnPos = new HashMap<String, Double>();
 
-    public static double redThresh = 0.008, blueThresh = 0.008;
+    public static double redThresh = 0.008, blueThresh = 0.008, startPos = 0.85;
     ColorRangefinder sensor;
     NormalizedRGBA colors;
 
@@ -41,7 +41,7 @@ public class SpecMec {
         swingPos.put("Intake",      intakePos);
         swingPos.put("Score",        scorePos);
         swingPos.put("Idle",        idlePos);
-        swingPos.put("Start",       0.9);
+        swingPos.put("Start",       startPos);
         swingPos.put("Down",       0.96);
 
 
