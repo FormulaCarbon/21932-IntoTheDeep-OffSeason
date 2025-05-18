@@ -42,6 +42,7 @@ public class SpecMec {
         swingPos.put("Score",        scorePos);
         swingPos.put("Idle",        idlePos);
         swingPos.put("Start",       0.9);
+        swingPos.put("Down",       0.96);
 
 
         turnPos.put("Intake",      turn0);

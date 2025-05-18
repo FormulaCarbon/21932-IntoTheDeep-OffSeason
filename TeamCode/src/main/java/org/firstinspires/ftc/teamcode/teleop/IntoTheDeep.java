@@ -120,10 +120,10 @@ public class IntoTheDeep extends LinearOpMode {
                 incr = 0;
             }
             if (gamepad2.b) {
-                //specMec.setPosition("Start", "Intake");
+                specMec.setPosition("Down", "Intake");
                 specMec.idleClaw();
                 sequence = "Sample";
-                incr = 0;
+                incr = 1;
             }
             if (gamepad2.x)
             {

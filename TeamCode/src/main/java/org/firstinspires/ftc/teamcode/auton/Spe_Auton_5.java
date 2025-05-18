@@ -32,7 +32,7 @@ public class Spe_Auton_5 extends OpMode {
     public static double waitTime = 0.5;
     private Wrist wrist;
 
-    public static double hang0X = 36.25, hangX = 39,pickX = 13.5, pickY = 31, hangY = 74, blockX = 30, block3X = 18, block3Y = 10, blockY = 23, block2Y = 15, pushControlX = 63, parkX = 30, parkY = 25, pickX4 = 13.5, pickX3 = 14.5, hang3XChange = -8, hang4XChange = -10, pickY1 = 31;
+    public static double hang0X = 36.25, hangX = 39,pickX = 13.5, pickY = 31, hangY = 74, blockX = 29, block3X = 18, block3Y = 10, blockY = 23, block2Y = 15, pushControlX = 63, parkX = 30, parkY = 25, pickX4 = 13.5, pickX3 = 14.5, hang3XChange = -8, hang4XChange = -10, pickY1 = 31;
 
     public static int pivotDownTime = 0, idleTime0 = 0, scoreTime0 = 1100, openTime0 = 1800 , closeTime1 = 500;
 
